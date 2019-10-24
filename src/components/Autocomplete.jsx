@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
 import AutocompleteResultItem from './AutocompleteResultItem';
 import './Autocomplete.scss';
-function Autocomplete({data, name, id, weightAlgorithm='INDEX'}) {
+function Autocomplete({data, name, id, placeholder, weightAlgorithm='INDEX'}) {
     const [searchKey, setSearchKey] = useState({value: '', isSearching: false});
     const [searchResults, setSearchResults] = useState([]);
-    const [placeholder, setPlaceholder] = useState('');
+    const [autocompletePlaceholder, setAutocompletePlaceholder] = useState('');
     const [listIndex, setListIndex] = useState(-1);
     const inputEl = useRef(null);
     const minNumberOfCharacters = 2;
@@ -102,7 +102,7 @@ function Autocomplete({data, name, id, weightAlgorithm='INDEX'}) {
 
     const selectItem = (index) => {
         setSearchKey({value: searchResults[index], isSearching: false});
-        setPlaceholder('');
+        setAutocompletePlaceholder('');
         setListIndex(-1);
         inputEl.current.focus();
     }
@@ -110,15 +110,15 @@ function Autocomplete({data, name, id, weightAlgorithm='INDEX'}) {
         const newSearch = event.target.value;
         setSearchKey({value: newSearch, isSearching: newSearch.length>=minNumberOfCharacters });
         setSearchResults(filteredData(newSearch));
-        setPlaceholder('');
+        setAutocompletePlaceholder('');
         setListIndex(-1);
     }
     const preSelect = (index) => {
-        setPlaceholder(searchResults[index]);
+        setAutocompletePlaceholder(searchResults[index]);
         setListIndex(index);
     }
     const removePreSelect = () => {
-        setPlaceholder('');
+        setAutocompletePlaceholder('');
     }
 
     const clearSearch = (event) => {
@@ -135,9 +135,10 @@ function Autocomplete({data, name, id, weightAlgorithm='INDEX'}) {
                         value={searchKey.value}
                         onKeyDown={handleKeyDown}
                         ref={inputEl}
-                        autofocus="true"
+                        autoFocus={true}
+                        placeholder={placeholder}
                 />
-                {placeholder && <div className="autocomplete-placeholder">{placeholder}</div>}
+                {autocompletePlaceholder && <div className="autocomplete-placeholder">{autocompletePlaceholder}</div>}
                 <button onClick={clearSearch} className={`clear-search ${searchKey.value ? 'active' : ''}`}></button>
             </div>
             {

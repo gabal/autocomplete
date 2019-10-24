@@ -6,7 +6,7 @@ import './App.scss';
 function App() {
   return (
     <div className="App">
-      <Autocomplete data={Array.from(new Set(fruits))} />
+      <Autocomplete data={Array.from(new Set(fruits))} placeholder="Enter a fruit" />
     </div>
   );
 }

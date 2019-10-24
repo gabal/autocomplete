@@ -17,7 +17,6 @@ test('search for app', () => {
     });
     expect(wrapper.textContent).toBe('');
     const input = wrapper.querySelector('input');
-    
     Simulate.change(input, {target: {value: 'app'}});
     const results = wrapper.querySelectorAll('.result-item');
     expect(results.length).toBe(5);
