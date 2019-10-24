@@ -1,0 +1,85 @@
+$roundness: 8px;
+.autocomplete{
+    font-family: Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    position: relative;
+    input{
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 22px;
+        padding: 10px 20px;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: $roundness;
+        border: 1px solid #ccc;
+    }
+    ul{
+        list-style: none;
+        padding: 0;
+        border: 1px solid #ccc;
+        border-radius: $roundness;
+        overflow: hidden;
+        margin: 0;
+        max-height: 380px;
+        overflow-y: auto;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+    }
+    .clear-search{
+        position: absolute;
+        right: 14px;
+        top: 12px;
+        width: 22px;
+        height: 22px;
+        z-index: 2;
+        border:1px solid transparent;
+        background-color: transparent;
+        display: inline-block;
+        outline: 0;
+        cursor: pointer;
+        display: none;
+        &.active{
+            display: block;
+        }
+        &:hover{
+            &:after,
+            &:before{
+                background: #999;
+            }
+        }
+        &:after,
+        &:before{
+            content: '';
+            display: block;
+            width: 4px;
+            height: 18px;
+            background: #ccc;
+            border-radius: 4px;
+            position: absolute;
+            top: 2px;
+            left: 8px;
+        }
+        &:after{
+            transform: rotate(45deg);
+        }
+        &:before{
+            transform: rotate(-45deg);
+        }
+    }
+}
+
+.autocomplete-input-container{
+    position: relative;
+}
+.autocomplete-placeholder{
+    font-family: Helvetica, Arial, sans-serif;
+    background: #fff;
+    color: #ccc;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    font-size: 22px;
+    padding: 5px 15px;
+}

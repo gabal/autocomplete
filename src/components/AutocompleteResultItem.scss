@@ -1,0 +1,28 @@
+.result-item{
+    padding: 10px 20px;
+    position: relative;
+    cursor: pointer;
+    &:after{
+        content: '';
+        display: block;
+        left: 20px;
+        right: 20px;
+        bottom: 0;
+        border-bottom: 1px dashed #d8d8d8;
+        height:1px;
+        position: absolute;
+    }
+    &:last-child{
+        &:after{
+            border-bottom: 0;
+        }
+    }
+    strong{
+        color: #ff4000;
+        font-weight: normal;
+    }
+    &.selected{
+        background: #f7f7f7;
+        color: #999
+    }
+}
